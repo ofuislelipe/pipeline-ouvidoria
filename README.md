@@ -235,9 +235,9 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **Projeto mantido por:** [Seu Nome]
 
-📧 Email: seu.email@exemplo.com  
-💼 LinkedIn: [seu-perfil](https://linkedin.com/in/seu-perfil)  
-🐙 GitHub: [@seu-usuario](https://github.com/seu-usuario)
+📧 Email: lu_isfelipe@outlook.com 
+💼 LinkedIn: [Luis Felipe]([https://www.linkedin.com/in/luis-felipe-batista-de-carvalho-9a9a2713a/))  
+🐙 GitHub: [@ofuislelipe]([https://github.com/seu-usuario](https://github.com/ofuislelipe))
 
 ---
 
