@@ -1,0 +1,114 @@
+Nome,Status,Bucket,Descrição,Checklist,Tempo,Prioridade,Link GitHub,Data Início,Data Fim,Tags,Notas
+1.1 Criar estrutura de diretórios,⬜ To Do,🔧 SEMANA 1 - Setup,"Criar todos os diretórios necessários no SageMaker. Esta é a base da organização do projeto.","☐ /pipeline/queries/bronze
+☐ /pipeline/queries/silver
+☐ /pipeline/queries/gold
+☐ /pipeline/queries/dimensions
+☐ /pipeline/utils
+☐ /pipeline/logs
+☐ /airflow/dags",10 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Setup|Infraestrutura,Usar terminal do SageMaker
+1.2 Instalar Airflow,⬜ To Do,🔧 SEMANA 1 - Setup,"Instalar Apache Airflow e todas as dependências necessárias para orquestração.","☐ pip install apache-airflow==2.8.1
+☐ pip install apache-airflow-providers-amazon
+☐ Configurar AIRFLOW_HOME
+☐ airflow db init
+☐ Criar usuário admin",30 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Setup|Airflow,Anotar usuário e senha criados
+1.3 Configurar Airflow,⬜ To Do,🔧 SEMANA 1 - Setup,"Editar arquivo airflow.cfg com configurações específicas do projeto.","☐ Editar airflow.cfg
+☐ Definir dags_folder
+☐ Desativar load_examples
+☐ Configurar logs",20 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Setup|Airflow,Fazer backup do arquivo original antes de editar
+1.4 Criar utilitários Python,⬜ To Do,🔧 SEMANA 1 - Setup,"Desenvolver helpers Python para facilitar execução de queries Athena e logging.","☐ athena_helper.py criado
+☐ logger.py criado
+☐ Testar imports",1 hora,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,Desenvolvimento|Python,Testar funcionamento antes de prosseguir
+1.5 Documentar credenciais S3,⬜ To Do,🔧 SEMANA 1 - Setup,"Documentar bucket S3 e configurações necessárias no arquivo .env","☐ Anotar bucket name
+☐ Anotar output location
+☐ Testar permissões",15 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,Documentação|AWS,Guardar .env em local seguro
+2.1 Criar bronze/case.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_case filtrando casos de Ouvidoria.","☐ Query escrita
+☐ Testada no Athena
+☐ Validar dedupe (0 duplicados)
+☐ Verificar contagem de registros",20 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria/blob/main/queries/bronze/case.sql,,,SQL|Bronze,Exemplo já disponível no repo
+2.2 Criar bronze/task.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_case_task__c.","☐ Query escrita
+☐ Testada no Athena
+☐ Validar dedupe",20 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,Seguir mesmo padrão do case.sql
+2.3 Criar bronze/account.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_account.","☐ Query escrita
+☐ Testada",15 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.4 Criar bronze/lead.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_lead.","☐ Query escrita
+☐ Testada",15 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.5 Criar bronze/protocolo.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_protocolo__c.","☐ Query escrita
+☐ Testada",15 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.6 Criar bronze/fato.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_fato_geradores__c.","☐ Query escrita
+☐ Testada",10 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.7 Criar bronze/unidade.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_unidade_venda__c.","☐ Query escrita
+☐ Testada",10 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.8 Criar bronze/produto.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_produto__c.","☐ Query escrita
+☐ Testada",10 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.9 Criar bronze/user.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_user.","☐ Query escrita
+☐ Testada",10 min,🔵 Baixa,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.10 Criar bronze/recordtype.sql,⬜ To Do,📦 SEMANA 2 - Bronze,"Query de deduplicação da tabela salesforce_recordtype.","☐ Query escrita
+☐ Testada",10 min,🔵 Baixa,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Bronze,
+2.11 Validação completa Bronze,⬜ To Do,📦 SEMANA 2 - Bronze,"Executar todas as queries de validação da camada Bronze e documentar resultados.","☐ Todas as 10 tabelas criadas
+☐ Contagens corretas (>0)
+☐ Sem duplicados (=0)
+☐ Performance OK",1 hora,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Checkpoint,Usar queries do docs/VALIDACAO.md
+3.1 Criar silver/ouvidoria_base.sql,⬜ To Do,🔨 SEMANA 3 - Silver,"Query principal da camada Silver fazendo merge entre Account e Lead + limpeza de dados.","☐ Query escrita
+☐ Merge Account+Lead funcionando
+☐ Conversões de timezone OK
+☐ Testada no Athena",2 horas,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Silver,Maior e mais complexa query do projeto
+3.2 Validar Task_Business_Logic,⬜ To Do,🔨 SEMANA 3 - Silver,"Validar que a lógica de negócio das Tasks está sendo aplicada corretamente.","☐ ROW_NUMBER correto
+☐ Filtros aplicados
+☐ Comparar com query antiga",30 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Silver,Crítico para integridade dos dados
+3.3 Criar dim_canal.sql,⬜ To Do,🔨 SEMANA 3 - Silver,"Tabela dimensão com regras de negócio para classificação de canais.","☐ Todas regras de negócio implementadas
+☐ tp_canal correto
+☐ ds_canal correto",30 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Dimensões,
+3.4 Criar dim_empresa.sql,⬜ To Do,🔨 SEMANA 3 - Silver,"Tabela dimensão para mapeamento de diretorias → empresas.","☐ Mapeamento diretorias completo
+☐ Testado",20 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Dimensões,
+3.5 Criar dim_regiao.sql,⬜ To Do,🔨 SEMANA 3 - Silver,"Tabela dimensão com mapeamento UF → Região (27 UFs).","☐ 27 UFs mapeadas
+☐ 5 regiões definidas",10 min,🔵 Baixa,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Dimensões,Query mais simples - hardcoded
+3.6 Testar JOINs Silver,⬜ To Do,🔨 SEMANA 3 - Silver,"Validar integridade dos JOINs entre Silver e Bronze.","☐ Sem perda de registros
+☐ Campos corretos
+☐ Performance aceitável",1 hora,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Silver,Comparar contagens antes e depois
+3.7 Validação completa Silver,⬜ To Do,🔨 SEMANA 3 - Silver,"Checkpoint de validação da camada Silver + Dimensões.","☐ Silver criada
+☐ 3 dimensões criadas
+☐ JOINs testados",1 hora,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Checkpoint,Executar queries do docs/VALIDACAO.md
+4.1 Criar gold/ouvidoria_analitica.sql,⬜ To Do,⭐ SEMANA 4 - Gold,"Query final com todos os cálculos de métricas de negócio e campos derivados.","☐ Query escrita
+☐ JOINs com dimensões
+☐ Cálculos de prazo
+☐ Campos derivados",2 horas,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,SQL|Gold,Query final do pipeline
+4.2 Validar dias corridos,⬜ To Do,⭐ SEMANA 4 - Gold,"Validar cálculo de dias corridos entre dt_recebimento e dt_fechamento.","☐ Comparar com query antiga
+☐ Casos nulos OK
+☐ Valores corretos",30 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Gold,Validação crítica!
+4.3 Validar dias úteis,⬜ To Do,⭐ SEMANA 4 - Gold,"Validar cálculo de dias úteis usando tabela dcalendario.","☐ JOIN com dcalendario OK
+☐ Contagem correta
+☐ Performance aceitável",30 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Gold,Pode impactar performance
+4.4 Comparação Gold vs Antiga,⬜ To Do,⭐ SEMANA 4 - Gold,"Validação final: comparar gold_ouvidoria_analitica vs tb_ouvidoria_analitica.","☐ Mesma contagem de registros
+☐ Campos principais iguais
+☐ Diferenças documentadas",2 horas,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Checkpoint,VALIDAÇÃO CRÍTICA FINAL
+4.5 Criar DAG Airflow,⬜ To Do,⭐ SEMANA 4 - Gold,"Desenvolver DAG completa de orquestração Bronze→Silver→Gold.","☐ Arquivo DAG criado
+☐ Todas tasks definidas
+☐ Dependências corretas",1 hora,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Desenvolvimento|Airflow,
+4.6 Testar DAG localmente,⬜ To Do,⭐ SEMANA 4 - Gold,"Testar DAG no Airflow UI antes de schedule.","☐ DAG visível no Airflow
+☐ Sem erros de sintaxe
+☐ Tasks aparecem corretamente",30 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Teste|Airflow,
+4.7 Executar pipeline completo,⬜ To Do,⭐ SEMANA 4 - Gold,"Primeira execução end-to-end: Bronze→Silver→Gold.","☐ Bronze executado sem erros
+☐ Silver executado sem erros
+☐ Gold executado sem erros
+☐ Validações passaram",1 hora,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Teste|Pipeline,PRIMEIRA EXECUÇÃO COMPLETA!
+4.8 Configurar schedule,⬜ To Do,⭐ SEMANA 4 - Gold,"Agendar execução diária do pipeline para às 6h da manhã.","☐ Cron configurado (0 6 * * *)
+☐ DAG ativada
+☐ Testado",15 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,Configuração|Airflow,
+4.9 Logs e monitoramento,⬜ To Do,⭐ SEMANA 4 - Gold,"Configurar sistema de logs estruturados.","☐ Logs em arquivo
+☐ Formato consistente
+☐ Rotação configurada",30 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,Configuração|Logs,
+Checkpoint 1 - Bronze,⬜ To Do,✅ VALIDAÇÃO FINAL,"Executar queries de validação da camada Bronze e salvar resultados.","☐ Query contagens executada
+☐ Query duplicados executada
+☐ Resultados salvos",20 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Bronze,Ver docs/VALIDACAO.md
+Checkpoint 2 - Silver,⬜ To Do,✅ VALIDAÇÃO FINAL,"Executar queries de validação da camada Silver e salvar resultados.","☐ Query contagens executada
+☐ Query merge validada
+☐ Resultados salvos",20 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Silver,Ver docs/VALIDACAO.md
+Checkpoint 3 - Gold,⬜ To Do,✅ VALIDAÇÃO FINAL,"Validação crítica final comparando nova vs antiga implementação.","☐ Contagens comparadas
+☐ Amostragem validada
+☐ Diferenças aprovadas",30 min,🔴 Alta,https://github.com/seu-usuario/pipeline-ouvidoria,,,Validação|Gold,CHECKPOINT MAIS IMPORTANTE
+Criar README.md,⬜ To Do,📚 DOCUMENTAÇÃO,"Documentar projeto completo no README principal.","☐ Arquitetura descrita
+☐ Como executar
+☐ Troubleshooting",1 hora,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,Documentação,Já criado no setup - revisar e atualizar
+Documentar diferenças,⬜ To Do,📚 DOCUMENTAÇÃO,"Listar todas as mudanças vs query monolítica original.","☐ Campos removidos listados
+☐ Lógicas alteradas explicadas
+☐ Melhorias documentadas",30 min,🟡 Média,https://github.com/seu-usuario/pipeline-ouvidoria,,,Documentação,Importante para stakeholders
