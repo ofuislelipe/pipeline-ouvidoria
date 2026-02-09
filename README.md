@@ -233,11 +233,11 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## ✉️ Contato
 
-**Projeto mantido por:** [Seu Nome]
+**Projeto mantido por:** [Luis Felipe]
 
 📧 Email: lu_isfelipe@outlook.com 
 💼 LinkedIn: [Luis Felipe]([https://www.linkedin.com/in/luis-felipe-batista-de-carvalho-9a9a2713a/))  
-🐙 GitHub: [@ofuislelipe]([https://github.com/seu-usuario](https://github.com/ofuislelipe))
+🐙 GitHub: [@ofuislelipe]([(https://github.com/ofuislelipe))
 
 ---
 
